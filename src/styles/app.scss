@@ -14,7 +14,37 @@ h3,h4{
     color: rgb(114, 114, 114);
 }
 
+.App{
+    transition: all 0.5s ease;
+}
+
+.library-active{
+    margin-left: 30%;
+}
+
 @import "./song";
 @import "./player";
 @import "./library";
 @import "./nav";
+
+@media screen and (max-width: 768px){
+    nav{
+        button{
+            z-index: 10;
+        }
+    }
+    .library{
+        width: 100%;
+    }
+    .time-control{
+        width: 90%;
+    }
+    .play-control{
+        width: 60%;
+    }
+    .song-container{
+        img{
+            width: 60%;
+        }
+    }
+}

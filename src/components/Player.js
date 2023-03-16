@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faAngleLeft, faAngleRight, faPause} from "@fortawesome/free-solid-svg-icons";
-import {playAudio} from "../util";
 
 const Player = ({
     isPlaying,
@@ -14,6 +13,8 @@ const Player = ({
     setCurrentSong,
     setSongs,
   }) => {
+
+    const animationPercentage = (songInfo.currentTime / songInfo.duration) * 100;
     //UseEffect Update List
     const activeLibraryHandler = (nextPrev) => {
       const newSongs = songs.map((song) => {
@@ -66,7 +67,7 @@ const Player = ({
         if ((currentIndex - 1) % songs.length === -1) {
           await setCurrentSong(songs[songs.length - 1]);
           activeLibraryHandler(songs[songs.length - 1]);
-          playAudio(isPlaying, audioRef);
+          if (isPlaying) audioRef.current.play();
           return;
         }
         await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
@@ -85,7 +86,12 @@ const Player = ({
         <div className="player">
             <div className="time-control">
                 <p>{getTime(songInfo.currentTime)}</p>
-                <input min={0} max={songInfo.duration || 0} value={songInfo.currentTime} onChange={dragHandler} type="range" />
+                <div className="track">
+                  <input min={0} max={songInfo.duration || 0} value={songInfo.currentTime} onChange={dragHandler} type="range" />
+                  <div className="animate-track" style={{
+                  transform: `translateX(${animationPercentage}%)`
+                  }}></div>
+                </div>
                 <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
             </div>
             <div className="play-control">
