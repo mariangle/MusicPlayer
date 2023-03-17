@@ -7,11 +7,28 @@ import Nav from "./components/Nav";
 import data from "./data";
 
 
-function App({ activeLibraryHandler }) {
+function App() {
   const audioRef = useRef(null);
   const [songs, setSongs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const activeLibraryHandler = (nextPrev) => {
+    const newSongs = songs.map((song) => {
+      if (song.id === nextPrev.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+
+    setSongs(newSongs);
+  };
 
   const autoPlayHandler = () => {
     if (isPlaying) {
@@ -37,8 +54,9 @@ function App({ activeLibraryHandler }) {
       (song) => song.id === currentSong.id
     );
     await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-    activeLibraryHandler(songs[(currentIndex + 1) % songs.length], songs, setSongs);
-    if (isPlaying) audioRef.current.play();
+    activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
+    if (!isPlaying) audioRef.current.play();
+    return;
   };
 
   return (
@@ -58,6 +76,8 @@ function App({ activeLibraryHandler }) {
         songs={songs}
         setCurrentSong={setCurrentSong}
         setSongs={setSongs}
+        activeLibraryHandler={activeLibraryHandler}
+
       />
       <Library
         setSongs={setSongs}

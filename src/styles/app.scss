@@ -3,15 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
-h1,h2,h3{
-    color: rgb(53, 53, 53);
+h1,h2{
+    color: rgb(255, 255, 255);
+}
+h3{
+    color: #a7a7a7;
 }
 body{
+    background: #191a2e;
     font-family: 'Lato', sans-serif;
 }
-h3,h4{
+h4{
     font-weight: 400;
-    color: rgb(114, 114, 114);
+    color: rgb(255, 255, 255);
+}
+p{
+    color: white;
+}
+svg{
+    color: white;
 }
 
 .App{
@@ -29,6 +39,8 @@ h3,h4{
 
 @media screen and (max-width: 768px){
     nav{
+        margin: 0;
+        padding: 1.5rem 1.5rem 0rem 1.5rem;
         button{
             z-index: 10;
         }
@@ -40,7 +52,7 @@ h3,h4{
         width: 90%;
     }
     .play-control{
-        width: 60%;
+        width: 80%;
     }
     .song-container{
         img{

@@ -11,32 +11,12 @@ const Player = ({
     currentSong,
     songs,
     setCurrentSong,
-    setSongs,
+    activeLibraryHandler,
   }) => {
 
     const animationPercentage = (songInfo.currentTime / songInfo.duration) * 100;
     //UseEffect Update List
-    const activeLibraryHandler = (nextPrev) => {
-      const newSongs = songs.map((song) => {
-        if (song.id === nextPrev.id) {
-          return {
-            ...song,
-            active: true,
-          };
-        } else {
-          return {
-            ...song,
-            active: false,
-          };
-        }
-      });
-  
-      setSongs(newSongs);
-    };
-  
-    const trackAnim = {
-      transform: `translateX(${songInfo.animationPercentage}%)`,
-    };
+
     //Event Handlers
     function getTime(time) {
       return (
@@ -59,6 +39,7 @@ const Player = ({
     };
     const skipTrackHandler = async (direction) => {
       let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+      
       if (direction === "skip-forward") {
         await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
         activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);

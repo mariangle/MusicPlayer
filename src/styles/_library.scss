@@ -2,10 +2,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 20rem;
+    width: 25rem;
     height: 100%;
-    background: white;
-    box-shadow: 2px 2px 50px rgb(100, 100, 100);
+    background: #191a2e;
+    box-shadow: 5px 5px  50px #1f2138;
     overflow-y: scroll;
     transform: translateX(-100%);
     transition: all 0.5s ease;
@@ -20,12 +20,15 @@
     align-items: center;
     padding: 1rem 2rem 1rem 2rem; 
     cursor: pointer;
+    border-radius: 5px;
+    margin: 1rem;
+    background: #1e1f34;
     transition: background 0.3s ease;
     img{
         width: 30%;
     }
     &:hover{
-        background: rgb(88, 173, 116);
+        background: rgb(45, 55, 110);
     }
 }
 
@@ -33,6 +36,7 @@
     padding-left: 1rem;
     h3{
         font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
     h4{
         font-size: 0.7rem;
@@ -41,7 +45,7 @@
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(155,155,155,0.5,) transparent;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
 }
 *::-webkit-scrollbar{
     width: 5px;
@@ -50,13 +54,13 @@
     background: transparent;
 }
 *::-webkit-scrollbar-thumb{
-    background-color: rgba(155,155,155,0.5,);
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 20px;
     border: transparent
 }
 
 .selected{
-    background: violet;
+    background: #2f3255;
 }
 .active-library{
     transform: translateX(0%);
